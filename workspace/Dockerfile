@@ -298,9 +298,16 @@ USER laradock
 ARG INSTALL_SUPERVISOR=true
 ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
 
+
+
+# Install Supervisor.
+
 RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
     # Install the supervisor
-    apt-get install supervisor \
+    apt-get update && \
+    apt-get install -y supervisor && \
+    rm -rf /var/lib/apt/lists/* && \
+    sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf \
 ;fi
 
 
