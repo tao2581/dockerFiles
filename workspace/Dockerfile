@@ -151,7 +151,7 @@ USER laradock
 # Check if NVM needs to be installed
 ARG NODE_VERSION=stable
 ENV NODE_VERSION ${NODE_VERSION}
-ARG INSTALL_NODE=false
+ARG INSTALL_NODE=true
 ENV INSTALL_NODE ${INSTALL_NODE}
 ENV NVM_DIR /home/laradock/.nvm
 RUN if [ ${INSTALL_NODE} = true ]; then \
