@@ -300,7 +300,7 @@ ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
 
 RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
     # Install the supervisor
-    apt-get install supervisor
+    apt-get install supervisor \
 ;fi
 
 
