@@ -291,6 +291,19 @@ RUN if [ ${INSTALL_LARAVEL_ENVOY} = true ]; then \
     && composer global require "laravel/envoy=~1.0" \
 ;fi
 
+#####################################
+# Supervisor:
+#####################################
+USER laradock
+ARG INSTALL_SUPERVISOR=true
+ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
+
+RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
+    # Install the supervisor
+    apt-get install supervisor
+;fi
+
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
