@@ -99,7 +99,7 @@ COPY ./xdebug.ini /etc/php/7.0/cli/conf.d/xdebug.ini
 #####################################
 # ssh:
 #####################################
-ARG INSTALL_WORKSPACE_SSH=false
+ARG INSTALL_WORKSPACE_SSH=true
 ENV INSTALL_WORKSPACE_SSH ${INSTALL_WORKSPACE_SSH}
 
 ADD insecure_id_rsa /tmp/id_rsa
@@ -217,7 +217,7 @@ RUN if [ ${INSTALL_YARN} = true ]; then \
 #####################################
 USER root
 
-ARG INSTALL_AEROSPIKE_EXTENSION=true
+ARG INSTALL_AEROSPIKE_EXTENSION=false
 ENV INSTALL_AEROSPIKE_EXTENSION ${INSTALL_AEROSPIKE_EXTENSION}
 
 # Copy aerospike configration for remote debugging
