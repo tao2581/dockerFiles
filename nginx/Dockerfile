@@ -4,6 +4,8 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 
 ADD nginx.conf /etc/nginx/
 
+ADD sites/default.conf /etc/nginx/sites-available/
+
 ARG PHP_UPSTREAM=php-fpm
 
 RUN apk update \
