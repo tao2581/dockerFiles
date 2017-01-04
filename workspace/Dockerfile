@@ -295,7 +295,7 @@ RUN if [ ${INSTALL_LARAVEL_ENVOY} = true ]; then \
 # Supervisor:
 #####################################
 USER laradock
-ARG INSTALL_SUPERVISOR=true
+ARG INSTALL_SUPERVISOR=false
 ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
 
 
