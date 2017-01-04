@@ -13,10 +13,10 @@ RUN     npm cache clean
 RUN     npm install -g n
 RUN     n stable
 RUN     curl -L https://npmjs.org/install.sh | sh
-
+RUN /usr/bin/npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN /usr/bin/npm install express && /usr/bin/npm install socket.io && /usr/bin/npm install redis && /usr/bin/npm install ioredis && /usr/bin/npm install redis-notifier && /usr/bin/npm install request && /usr/bin/npm install node-pre-gyp && /usr/bin/npm install sqlite3 && /usr/bin/npm install -g laravel-echo-server 
 
-WORKDIR /var/www/Api/
+WORKDIR  /var/script
 
 RUN usermod -u 1000 www-data
 
