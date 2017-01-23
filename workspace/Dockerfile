@@ -295,7 +295,7 @@ RUN if [ ${INSTALL_LARAVEL_ENVOY} = true ]; then \
 # Supervisor:
 #####################################
 USER laradock
-ARG INSTALL_SUPERVISOR=false
+ARG INSTALL_SUPERVISOR=true
 ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
 
 
@@ -309,7 +309,6 @@ RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
     rm -rf /var/lib/apt/lists/* && \
     sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf \
 ;fi
-
 
 #
 #--------------------------------------------------------------------------
