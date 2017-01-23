@@ -59,7 +59,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #####################################
 # Supervisor:
 #####################################
-USER laradock
+USER root
 ARG INSTALL_SUPERVISOR=true
 ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
 
