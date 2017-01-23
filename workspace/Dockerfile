@@ -234,3 +234,4 @@ RUN apt-get clean && \
 
 # Set default work directory
 WORKDIR /var/www
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
