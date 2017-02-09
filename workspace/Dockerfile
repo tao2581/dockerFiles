@@ -231,7 +231,7 @@ RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
 USER root
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN /usr/sbin/sshd -D
+
 EXPOSE 22  
 # Set default work directory
 WORKDIR /var/www
