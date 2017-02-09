@@ -112,6 +112,8 @@ RUN if [ ${INSTALL_WORKSPACE_SSH} = true ]; then \
         && cat /tmp/id_rsa >> /root/.ssh/id_rsa \
         && rm -f /tmp/id_rsa* \
         && chmod 644 /root/.ssh/authorized_keys /root/.ssh/id_rsa.pub \
+        && ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key \
+        && ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key \
     && chmod 400 /root/.ssh/id_rsa \
 ;fi
 
