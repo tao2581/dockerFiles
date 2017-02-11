@@ -216,7 +216,7 @@ ENV INSTALL_SUPERVISOR ${INSTALL_SUPERVISOR}
 # Install Supervisor.
 
 RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
-    # Install the supervisor
+    # Install the supervisor and start ssh
     apt-get update && \
     apt-get install -y supervisor && \
     rm -rf /var/lib/apt/lists/* && \
