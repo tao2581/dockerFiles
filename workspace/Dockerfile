@@ -221,7 +221,7 @@ RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
     apt-get install -y supervisor && \
     rm -rf /var/lib/apt/lists/* && \
     sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf && \
-    echo -e '[program:sshd]\ncommand=/usr/sbin/sshd -D' >> /etc/supervisor/supervisord.conf \
+    echo '[program:sshd]\ncommand=/usr/sbin/sshd -D' >> /etc/supervisor/supervisord.conf \
 ;fi
 
 #
