@@ -1,0 +1,20 @@
+#cloud-config 
+hostname: rancheros-72  
+rancher:  
+  network:  
+    dns:  
+      nameservers: 
+      - 192.168.1.10 
+      - 114.114.114.114 
+    interfaces: 
+      eth0: 
+        address: 192.168.55.72/24 
+        gateway: 192.168.55.254  
+        mtu: 1500 
+        dhcp: false  
+  docker:  
+    registry_mirror:   'https://nj9kfpre.mirror.aliyuncs.com'
+ssh_authorized_keys:  
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr1lBMHb74bqCB+MuXfOAGa2EDVZgj+vHrVaZm/JVA0D2yBbLZv7m0E3WAhBpVNR2P2nA8zcAt3fSedj+DhQdH5ODez8Iv9+UqACATFNYThkn5KKDTGpmxGqTNd6pb/cZzD6RFSVLiCdvXuT3FcUFZhRNqqEgab+8TbmbKmh0YMEGvbglqwVU+u7YI8Mm17JQH0SUst+UQpGDFlxBLRizEulzEfR8XGbzPLFwWorS+8VLgaeW30r5kf6XKx3nOlBprzhX/FkNE2fOAlwk+UWcEUyk9pMcssqpkxt0Xcx1gXS/cFZ4k6LtKSQKGWHm87T2QfK4RmXSHPc5gLKZtyjR/ root@coreos-01  
+ - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvMrnYdLuCBa865x9IDu0u8vYuzWQ7iLmpoqWVZElQCi5KIputp1jhsAPc9O6tF2tjn60Q+IVgxLoIlf2h/ltz6RR2S+/SJwU85/i+/u7iFaiCHA+NicSmwjNdy1OT4U3Jfrak7FLKTFJZvxnRXfIfkxzkNewbECWYqjGLVD1wEDOVLQwgUahDyVOW/yDbiel8EbTER2wH+XSoCBgYmzYP59XeN6EIz4CK5QLMAIQwVhoBh0K7ohBUhQfzCvxDExfTBqlXHiQaxAeNTd25i7ECwasTnm/l7lIbxuRool7Gp3eGoDkVW/mlzfk9QT47q0j9EIF//86HGxv6dTGYtCON Dyson@Dyson.local
+ 
