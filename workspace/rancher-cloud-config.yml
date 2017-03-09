@@ -12,11 +12,15 @@ rancher:
         gateway: 10.252.135.247  
         mtu: 1500 
         dhcp: false
+        post_up: 
+          - ip route add 10.0.0.0/8 via 10.252.135.247
       eth1: 
         address: 121.40.56.170/24
         gateway: 121.40.59.247
         mtu: 1500 
         dhcp: false
+        post_up: 
+          - ip route add default via 121.40.59.247
   docker:  
     registry_mirror:   'https://nj9kfpre.mirror.aliyuncs.com'
 ssh_authorized_keys:  
