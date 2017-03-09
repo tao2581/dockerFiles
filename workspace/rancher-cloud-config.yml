@@ -1,17 +1,22 @@
 #cloud-config 
-hostname: rancheros-72  
+hostname: aliyun-rancheros-01  
 rancher:  
   network:  
     dns:  
       nameservers: 
-      - 192.168.1.10 
+      - 10.143.22.118 
       - 114.114.114.114 
     interfaces: 
       eth0: 
-        address: 192.168.55.72/24 
-        gateway: 192.168.55.254  
+        address: 10.252.129.91/24 
+        gateway: 10.252.135.247  
         mtu: 1500 
-        dhcp: false  
+        dhcp: false
+      eth1: 
+        address: 121.40.56.170/24
+        gateway: 121.40.59.247
+        mtu: 1500 
+        dhcp: false
   docker:  
     registry_mirror:   'https://nj9kfpre.mirror.aliyuncs.com'
 ssh_authorized_keys:  
