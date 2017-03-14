@@ -1,4 +1,4 @@
-FROM busybox
+FROM colegleason/busybox-curl
 
 RUN mkdir -p /var/spool/cron/crontabs
 
