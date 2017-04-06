@@ -2,7 +2,7 @@ FROM progrium/busybox
 
 WORKDIR /home
 
-RUN opkg-install curl bash git
+RUN opkg-install curl bash ntpd
 
 RUN mkdir -p /var/spool/cron/crontabs
 
