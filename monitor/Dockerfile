@@ -6,7 +6,7 @@ ADD monitor.sh /home/monitor.sh
 
 ADD monitor.conf /home/monitor.conf
 
-RUN apt-get update && apt-get install curl
+RUN apt-get update && apt-get -y install curl
 
 ARG DINTALK_TOKEN=null
 ARG SITES=null
