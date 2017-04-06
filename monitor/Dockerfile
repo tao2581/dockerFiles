@@ -17,4 +17,6 @@ USER root
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD bash -c ' echo "$SITES" > /home/monitor.conf && sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh &&  sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh && echo "$CRON_ENTRY bash /home/monitor.sh" | crontab - && /bin/bash '
+WORKDIR /home/
+
+CMD bash -c ' echo "$SITES" > /home/monitor.conf && sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh &&  sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh && echo "$CRON_ENTRY bash /home/monitor.sh >> /var/log/cron.log 2>&1" | crontab - && /bin/bash '
