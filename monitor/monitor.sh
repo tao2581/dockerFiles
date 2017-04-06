@@ -32,7 +32,7 @@ sendRecoverMessage()
 
 failMessage=""
 recoverMessage=""
-for line in `cat monitor.conf`
+for line in `cat ./monitor.conf`
 do
     lastTime=$currentTimeStamp
     if [ -f "$fileName" ]; then
