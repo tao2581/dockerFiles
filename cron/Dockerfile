@@ -2,8 +2,7 @@ FROM progrium/busybox
 
 WORKDIR /home
 
-RUN opkg-install curl bash ntpd base64
-
+RUN opkg-install curl bash ntpd ssl
 RUN mkdir -p /var/spool/cron/crontabs
 
 ARG TZ=UTC-8
