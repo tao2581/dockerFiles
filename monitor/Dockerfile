@@ -8,13 +8,9 @@ ADD monitor.conf /home/monitor.conf
 
 RUN apt-get update && apt-get -y install curl
 
-ARG DINTALK_TOKEN=null
-ARG SITES=null
-ARG CRON_ENTRY="*/3 * * * *"
-
-ENV DINTALK_TOKEN=$DINTALK_TOKEN
-ENV SITES=$SITES
-ENV CRON_ENTRY=$CRON_ENTRY
+ENV DINTALK_TOKEN=null
+ENV SITES=null
+ENV CRON_ENTRY="*/3 * * * *"
 
 RUN echo "$SITES" > /home/monitor.conf
 
