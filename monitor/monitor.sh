@@ -1,6 +1,7 @@
 #!/bin/bash
 currentTime=`date '+%m月%d日%H时%M分'`
 currentTimeStamp=`date '+%s'` 
+basepath=$(cd `dirname $0`; pwd)
 if [ ! -d "/var/tmp/webMonitor" ]; then
     mkdir -p "/var/tmp/webMonitor"
 fi
@@ -32,7 +33,7 @@ sendRecoverMessage()
 
 failMessage=""
 recoverMessage=""
-for line in `cat ./monitor.conf`
+for line in `cat $basepath/monitor.conf`
 do
     lastTime=$currentTimeStamp
     if [ -f "$fileName" ]; then
@@ -54,6 +55,7 @@ do
         fi       
     fi
 done
+echo $currentTime" 宕机：["$failMessage"] 恢复: ["$recoverMessage"]"
 if [ "$failMessage" != ""  ]; then
     sendFailMessage $currentTime $failMessage
 fi
