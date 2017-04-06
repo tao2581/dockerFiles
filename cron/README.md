@@ -15,7 +15,7 @@ TZ: timezone, such as : UTC-8
 `docker run -e "CRON_ENTRY=* * * * * echo hello world"  lodatol/cron`
 
 - This will invoke wp_cron every minute
-`docker run -e "CRON_ENTRY=* * * * * wget -O /dev/null http://mysite/wp_cron"  lodatol/cron`
+`docker run -e "CRON_ENTRY=* * * * * wget -O /dev/null http://mysite/wp_cron"  registry.cn-hangzhou.aliyuncs.com/laradock/cron`
 
 - Multiple task:  
 ```
