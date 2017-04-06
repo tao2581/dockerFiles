@@ -21,4 +21,9 @@ RUN echo "$SITES" > /home/monitor.conf
 RUN sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh && \
     sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh 
 
-CMD echo "$CRON_ENTRY" | crontab - && crond -f
+# Clean up
+USER root
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+CMD echo "$CRON_ENTRY" | crontab - 
