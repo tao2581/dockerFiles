@@ -41,7 +41,7 @@ do
     fi
 
     fileName="/var/tmp/webMonitor/"`echo $line | base64`
-    if [ `curl -s -m 3 -o /dev/null -w %{http_code} $line | grep '200\|301'` ];then
+    if [ `curl -s -m 3 -o /dev/null -w %{http_code} $line | grep '200\|301\|302'` ];then
         # 如果有失败通知
         if [ -f "$fileName" ]; then
             rm -f  "$fileName"
