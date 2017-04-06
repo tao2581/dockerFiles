@@ -26,4 +26,4 @@ USER root
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD echo "$CRON_ENTRY" | crontab - 
+CMD bash -c 'echo "$CRON_ENTRY" | crontab - && echo "runing"'
