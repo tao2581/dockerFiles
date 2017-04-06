@@ -12,14 +12,15 @@ ENV DINTALK_TOKEN=null
 ENV SITES=null
 ENV CRON_ENTRY="*/3 * * * *"
 
-RUN echo "$SITES" > /home/monitor.conf
-
-RUN sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh && \
-    sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh 
-
 # Clean up
 USER root
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD bash -c 'echo "$CRON_ENTRY bash /home/monitor.sh" | crontab - && /bin/bash'
+CMD bash -c '
+	echo "$SITES" > /home/monitor.conf &&
+	sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh && 
+    sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh &&
+	echo "$CRON_ENTRY bash /home/monitor.sh" | crontab - &&
+	/bin/bash
+	'
