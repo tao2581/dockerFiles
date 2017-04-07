@@ -41,7 +41,9 @@ do
     fi
 
     fileName="/var/tmp/webMonitor/"`echo $line | base64`
-    if [ `curl -s -m 3 -o /dev/null -w %{http_code} $line | grep '200\|301\|302'` ];then
+    httpCode=`curl -s -m 3 -o /dev/null -w %{http_code} $line`
+    if [ $httpCode == 200 ] || [ $httpCode == 301 ] || [ $httpCode == 302 ]; then
+    #if [ `curl -s -m 3 -o /dev/null -w %{http_code} $line | grep '200\|301\|302'` ];then
         # 如果有失败通知
         if [ -f "$fileName" ]; then
             rm -f  "$fileName"
@@ -50,16 +52,17 @@ do
     else        
         # 不存在历史通知或已间隔15分钟 发送通知
         if [ ! -f "$fileName" ] || [  $[currentTimeStamp - lastTime ] -gt $[60*15] ]; then
-            failMessage="${failMessage}\n\n[${line}](${line})--*无法访问*"
+            failMessage="${failMessage}\n\n[${line}](${line})--*无法访问[${httpCode}]*"
             echo "$currentTimeStamp" > $fileName
         fi       
     fi
 done
-echo $currentTime" 宕机：["$failMessage"] 恢复: ["$recoverMessage"]"
 if [ "$failMessage" != ""  ]; then
+  echo $currentTime" 宕机：["$failMessage"] "
     sendFailMessage $currentTime $failMessage
 fi
 
 if [ "$recoverMessage" != ""  ]; then
+  echo $currentTime" 恢复: ["$recoverMessage"]"
     sendRecoverMessage $currentTime $recoverMessage
 fi

@@ -6,6 +6,8 @@ ADD monitor.sh /home/monitor.sh
 
 ADD monitor.conf /home/monitor.conf
 
+ADD start.sh /home/start.sh
+
 RUN apt-get update && apt-get -y install curl
 
 ENV DINTALK_TOKEN=null
@@ -23,4 +25,4 @@ RUN echo "start runing ... " >> /var/log/cron.log
 
 WORKDIR /home/
 
-CMD sh -c 'echo "$SITES" > /home/monitor.conf && sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh &&  sed -i 's/DINTALK_TOKEN/'$DINTALK_TOKEN'/g' /home/monitor.sh && echo "$CRON_ENTRY bash /home/monitor.sh >> /var/log/cron.log 2>&1" | crontab - && cron -f && exec tail ---disable-inotify -F /var/log/cron.log'
+CMD ["/home/start.sh"]
