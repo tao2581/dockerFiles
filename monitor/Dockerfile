@@ -18,6 +18,7 @@ ENV CRON_ENTRY=3
 
 # Clean up
 USER root
+
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
