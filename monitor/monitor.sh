@@ -15,7 +15,7 @@ sendFailMessage()
           "title": "服务器宕机通知",
           "text": "'$1'\n## 服务器宕机通知，以下网站存在故障\n\n'$2'"
         }
-      }'
+      }' > /dev/null
 }
 
 sendRecoverMessage()
@@ -28,7 +28,7 @@ sendRecoverMessage()
           "title": "服务器恢复通知",
           "text": "'$1'\n## 服务器恢复通知，以下网站已恢复访问\n\n'$2'"
         }
-      }'
+      }' > /dev/null
 }
 
 failMessage=""
