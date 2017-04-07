@@ -8,11 +8,13 @@ ADD monitor.conf /home/monitor.conf
 
 ADD start.sh /home/start.sh
 
+RUN chmod +x /home/start.sh
+
 RUN apt-get update && apt-get -y install curl
 
 ENV DINTALK_TOKEN=null
 ENV SITES=null
-ENV CRON_ENTRY="*/3 * * * *"
+ENV CRON_ENTRY=3
 
 # Clean up
 USER root
