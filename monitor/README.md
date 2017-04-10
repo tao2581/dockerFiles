@@ -5,3 +5,7 @@
 DINTALK_TOKEN ：钉钉机器人 token  
 SITES ： 监控的网站列表，一行一个  
 CRON_ENTRY : 每几分钟执行一次，默认3分钟执行一次  值为数字
+
+![image](http://oo6biiqlb.bkt.clouddn.com/web-monitor-rancher.png)
+
+![image](http://oo6biiqlb.bkt.clouddn.com/web-monitor-dingtalk.png)
