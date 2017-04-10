@@ -14,4 +14,4 @@ Rancher 配置环境变量
 
 钉钉机器人通知示例  
 
-![image](http://oo6biiqlb.bkt.clouddn.com/web-monitor-dingtalk.png)
+![image](http://oo6biiqlb.bkt.clouddn.com/web-monitor-ding.png)
