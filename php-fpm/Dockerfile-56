@@ -150,7 +150,8 @@ RUN if [ ${CODEIGNITER} = true ]; then \
      docker-php-ext-install mysqli && \
      docker-php-ext-install tokenizer && \
      docker-php-ext-install pdo_mysql && \
-     docker-php-ext-install mysql 
+     docker-php-ext-install mysql && \
+     docker-php-ext-enable mysql
 ;fi
 
 #
