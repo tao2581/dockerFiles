@@ -13,7 +13,8 @@
 FROM laradock/php-fpm:7.0--1.2
 
 MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
-
+RUN echo "Asia/Shanghai" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata
 #
 #--------------------------------------------------------------------------
 # Mandatory Software's Installation
