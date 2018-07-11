@@ -225,8 +225,7 @@ RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
     echo 'command=/usr/sbin/sshd -D' >> /etc/supervisor/supervisord.conf  \
 ;fi
 
-pecl install mongodb && \
-docker-php-ext-enable mongodb \
+docker-php-ext-enable mongodb
 #
 #--------------------------------------------------------------------------
 # Final Touch
