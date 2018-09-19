@@ -240,4 +240,4 @@ RUN apt-get clean && \
 EXPOSE 22  
 # Set default work directory
 WORKDIR /var/www
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+#CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
