@@ -3,9 +3,11 @@ From mileschou/phalcon:7.1-fpm
 RUN  apt-get update && apt-get install -y sudo
 
 # redis 扩展
-RUN pecl install -o -f redis \
+RUN pecl install -o -f redis \    
+    && pecl install mongodb  \
+    && docker-php-ext-enable mongodb \
     &&  rm -rf /tmp/pear \
-    &&  echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+    &&  echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
 
 # composer 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 
