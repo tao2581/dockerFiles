@@ -1,18 +1,18 @@
-FROM php:7.2-fpm
+From mileschou/phalcon:7.1-fpm
 
-MAINTAINER tao2581 <tao2581@126.com>
+RUN  apt-get update && apt-get install -y sudo
 
-# 安装 redis \ mongo
-RUN pecl install redis-4.0.1 &&\ 
-    pecl install mongodb  &&\
-    docker-php-ext-enable redis mongodb
+# redis 扩展
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
-# 安装 mysqli \ opcache \ pdo_mysql
-RUN docker-php-ext-install opcache && \
-    docker-php-ext-install mysqli && \
-    docker-php-ext-install pdo_mysql && \
-    docker-php-ext-enable opcache mysqli pdo_mysql
-    
+# composer 
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 
+RUN php composer-setup.php 
+RUN php -r "unlink('composer-setup.php');" 
+RUN mv composer.phar /usr/local/bin/composer
+
 #安装 ldap
 RUN apt-get install git -y  
 RUN apt-get install ldap-utils libldb-dev libldap2-dev -y
@@ -21,14 +21,13 @@ RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
 RUN docker-php-ext-install ldap 
 RUN docker-php-ext-install pcntl
 
-# Copy opcache configration
-COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+#安装 gd
+RUN apt-get update && apt-get install -y libpng-dev  && apt-get  install -y zlib1g-dev && apt-get install -y wget
 
-# install composer 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 
-RUN php composer-setup.php 
-RUN php -r "unlink('composer-setup.php');" 
-RUN mv composer.phar /usr/local/bin/composer
+RUN  docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install zip
 
 # 设置时区
 RUN echo "Asia/Shanghai" > /etc/timezone && \
