@@ -2,7 +2,8 @@ FROM php:7.1-fpm
 
 MAINTAINER tao2581 <tao2581@126.com>
 
-RUN apt-get install libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev
+RUN apt-get update && apt-get install git -y  
+RUN apt-get install libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev -y
 # 安装 redis \ mongo
 RUN pecl install redis-4.0.1 &&\ 
     pecl install mongodb  &&\
@@ -15,7 +16,6 @@ RUN docker-php-ext-install opcache && \
     docker-php-ext-enable opcache mysqli pdo_mysql
     
 #安装 ldap
-RUN apt-get update && apt-get install git -y  
 RUN apt-get install ldap-utils libldb-dev libldap2-dev -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu 
