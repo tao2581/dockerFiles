@@ -2,6 +2,7 @@ FROM php:7.1-fpm
 
 MAINTAINER tao2581 <tao2581@126.com>
 
+RUN apt-get install libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev
 # 安装 redis \ mongo
 RUN pecl install redis-4.0.1 &&\ 
     pecl install mongodb  &&\
