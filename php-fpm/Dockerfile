@@ -1,35 +1,34 @@
-From mileschou/phalcon:7.1-fpm
+FROM php:7.1-fpm
 
-RUN  apt-get update && apt-get install -y sudo
+MAINTAINER tao2581 <tao2581@126.com>
 
-# redis 扩展
-RUN pecl install -o -f redis \    
-    && pecl install mongodb  \
-    && docker-php-ext-enable mongodb \
-    &&  rm -rf /tmp/pear \
-    &&  echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini 
+# 安装 redis \ mongo
+RUN pecl install redis-4.0.1 &&\ 
+    pecl install mongodb  &&\
+    docker-php-ext-enable redis mongodb
 
-# composer 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 
-RUN php composer-setup.php 
-RUN php -r "unlink('composer-setup.php');" 
-RUN mv composer.phar /usr/local/bin/composer
-
+# 安装 mysqli \ opcache \ pdo_mysql
+RUN docker-php-ext-install opcache && \
+    docker-php-ext-install mysqli && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-enable opcache mysqli pdo_mysql
+    
 #安装 ldap
-RUN apt-get install git -y  
+RUN apt-get update && apt-get install git -y  
 RUN apt-get install ldap-utils libldb-dev libldap2-dev -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu 
 RUN docker-php-ext-install ldap 
 RUN docker-php-ext-install pcntl
 
-#安装 gd
-RUN apt-get update && apt-get install -y libpng-dev  && apt-get  install -y zlib1g-dev && apt-get install -y wget
+# Copy opcache configration
+COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
-RUN  docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install mysqli \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install zip
+# install composer 
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" 
+RUN php composer-setup.php 
+RUN php -r "unlink('composer-setup.php');" 
+RUN mv composer.phar /usr/local/bin/composer
 
 # 设置时区
 RUN echo "Asia/Shanghai" > /etc/timezone && \
@@ -37,8 +36,6 @@ RUN echo "Asia/Shanghai" > /etc/timezone && \
 
 ADD ./laravel.ini /usr/local/etc/php/conf.d
 ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/
-
-RUN rm -r /var/lib/apt/lists/*
 
 RUN usermod -u 1000 www-data
 
